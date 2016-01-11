@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>点菜</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="components/bootstrap/css/bootstrap.css">
+    <script type="text/javascript" src="lib/mod.js"></script>
+    <style type="text/css">
+    .lanzi {
+        padding-bottom: 10px;
+    }
+    
+    .lbtn {
+        background: #FC4D3F;
+        display: inline-block;
+        width: 20px;
+        border-radius: 10px;
+        color: #fff;
+        height: 20px;
+        line-height: 18px;
+        padding-left: 0px;
+        font-size: 0.5em;
+        margin: 0 10px;
+    }
+    
+    .nbtn {
+        background: #fff;
+        border: 1px solid #FFC300;
+        color: #FFC300;
+        display: inline-block;
+        width: 20px;
+        border-radius: 10px;
+        height: 20px;
+        line-height: 18px;
+        padding-left: 1px;
+        font-size: 0.5em;
+        margin: 0 10px;
+    }
+    
+    .add {
+        padding-left: 2px;
+    }
+    
+    .MinusAdd {
+        position: absolute;
+        right: 5%;
+        bottom: 15%
+    }
+    
+    .table {
+        border-bottom: 1px solid #ccc
+    }
+    
+    .table>thead>tr>th,
+    .table>tbody>tr>th,
+    .table>tfoot>tr>th,
+    .table>thead>tr>td,
+    .table>tbody>tr>td,
+    .table>tfoot>tr>td {
+        border: none;
+    }
+    
+    .table p {
+        text-align: center;
+        margin: 0;
+    }
+    
+    .btn-yellow {
+        background: #FF7A01;
+        color: #fff;
+    }
+    
+    .btn-yellow:hover {
+        background: #FF7A01;
+        color: #fff;
+    }
+    
+    .btn-red {
+        background: #FD4E3D;
+    }
+    
+    .btn-red:hover {
+        background: #FF7A01;
+        color: #fff;
+    }
+    
+    .btn-hay {
+        background: #e5e5e5;
+        color: #FD4E3D;
+    }
+    
+    .btn-hay:hover {
+        background: #e5e5e5;
+        color: #FD4E3D;
+    }
+    
+    .allprice {
+        text-align: right;
+        padding-top: 8px;
+    }
+    
+    .allprice span {
+        font-size: 1.5em;
+        color: #fc4d3f;
+        margin-right: 5px;
+    }
+    
+    .allprice i {
+        font-style: normal;
+        color: #fc4d3f;
+    }
+    
+    .line {
+        height: 10px;
+        border-bottom: 1px solid #ddd;
+        border-top: 1px solid #ddd;
+        background: #EAEBED;
+    }
+    
+    .zhifu {
+        padding: 20px;
+        background: #eee;
+        height: 100px;
+    }
+    
+    .box ul {
+        padding: 0;
+        margin: 0;
+    }
+    
+    .box ul li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        clear: both;
+    }
+    
+    .box ul li {
+        border-bottom: 1px solid #ccc;
+        padding: 10px 0;
+    }
+    
+    .box ul li em {
+        float: right;
+        font-style: normal;
+    }
+    
+    .manjian {
+        background: #fcb50c;
+        font-style: normal;
+        margin-left: 5px;
+        display: inline-block;
+        padding: 2px 5px;
+        font-size: 0.8em;
+        color: #fff;
+        border-radius: 5px;
+    }
+    
+    .radio {
+        width: 18px;
+        height: 18px;
+    }
+    
+    [v-cloak] {
+        display: none
+    }
+    </style>
+</head>
+
+<body id="app">
+    <div class="container">
+        <div class="lanzi">
+            <table class="table">
+                <tr style="border-bottom:1px solid #ccc">
+                    <td width="40%">我的菜单</td>
+                    <td width="20%">金额</td>
+                    <td width="40%" align="center">数量</td>
+                </tr>
+                <tr v-for='dish in dishs'  v-if="dish.number>0" v-cloak>
+                    <td>{{dish.pluDescript}}</td>
+                    <td>{{dish.pluPrice*dish.number}}</td>
+                    <td>
+                        <p>
+                            <span class='glyphicon glyphicon-minus lbtn' @click='reduce(dish)'></span>{{ dish.number }}<span class="glyphicon glyphicon-plus lbtn add" @click='add(dish)'></span>
+                        </p>
+        </div>
+    </div>
+    </td>
+    </tr>
+    </table>
+    <div class="row">
+        <div class="col-xs-6"><a class="btn btn-yellow btn-red" href='/pos/diancai.htm?hotelId=9&pcCode=100' style="margin-right:10px;">加菜</a><a class="btn btn-hay" @click='clean()'>清空</a></div>
+        <div class="col-xs-6 allprice">总计：<span v-cloak>{{sum}}</span><i>RMB</i></div>
+    </div>
+    </div>
+    </div>
+    <div class="line"></div>
+    <div class="container">
+        <div class="box">
+            <ul>
+                <li><span>订单备注:</span><em v-cloak>{{ yd.remark}}</span></em></li>
+                <!-- <li><span>发票信息:</span><em>去给深V想</em></li> -->
+                <!--  <li style="border:none"><span>优惠信息:</span><em style='color:#fc4d3f'>满100减10元</em></li> -->
+            </ul>
+        </div>
+    </div>
+    <div class="line"></div>
+    <div class="container">
+        <div class="box">
+            <ul>
+                <li><span>到店时间:</span><em style='color:#fc4d3f' v-cloak>{{yd.dates}} {{yd.times}}</span></em></li>
+                <li><span>人数房间:</span><em v-cloak>{{yd.number}}人,{{yd.yy.descript}}</em></li>
+                <li style="border:none"><span>联系信息:</span><em v-cloak>{{yd.name}}{{yd.sex}},{{yd.mobile}}</em></li>
+            </ul>
+        </div>
+    </div>
+    <div class="line"></div>
+    <div class="container">
+        <div class="box">
+            <ul>
+                <li><span>在线预付<i class='manjian'  v-cloak>预付{{trueDprice}}元</i></span><em><input class='radio' type="radio" name='payWay'/></em></li>
+                <li style="border:none"><span>到店实付:</span><em><input class='radio' type="radio" name='payWay'/></em></li>
+            </ul>
+        </div>
+        <div class="row zhifu">
+            <button class="btn btn-block btn-yellow" @click='postAll'>提交</button>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+require('./js/pay')({
+    el: '#app',
+    data: JSON.parse(localStorage.getItem('ydInfo')),
+    dprice: 15,
+    hotelId: 9,
+    pcCode: 100,
+    isZhekou:true,
+    cPrice:100
+})
+</script>
+
+</html>

@@ -1,0 +1,11 @@
+{
+    "repos": "https://github.com/eternicode/bootstrap-datepicker.git",
+    "version": "v1.4.0",
+    "description": "Bootstrap datapicker",
+    "main": "bootstrap-datepicker.js",
+    "dependencies": {
+        "bootstrap": ">=2.0.4",
+        "jquery": ">=1.7.1"
+    },
+    "name": "bootstrap-datepicker"
+}

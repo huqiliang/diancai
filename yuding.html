@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>预订</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="components/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="components/bootstrap-datepicker/bootstrap-datepicker.css">
+    <link rel="stylesheet" type="text/css" href="css/yuding.less?__inline">
+    <script type="text/javascript" src="lib/mod.js"></script>
+</head>
+
+<body>
+
+    <div class="container" id="app">
+        <div class="row ydsj">
+            <div class="col-xs-4">预订时间:</div>
+            <div style="float:right;padding-right:15px;color:#FC4D3F" v-cloak>{{active.dates}} &nbsp;&nbsp;{{active.times}}</div>
+        </div>
+        <div class="row ydDay">
+            <div class="col-xs-3" v-for='date in dates' v-cloak>
+                <div class="box" :class="{active : date.time==active.dates}" @click='select("dates",date.time)'>
+                    <p>{{date.time | sortDate}}</p>
+                    <p>{{date.dateDt}}</p>
+                </div>
+            </div>
+            
+            <input class="col-xs-3" id="dateShowAll"readonly="readonly" />
+            <div class="box morebox" :class="{active : !isMore}"   @click='dateShowAll()' >
+                <p><img src="images/yudingrl.png?__inline" width="22"></p>
+                <p>更多</p>
+            </div>
+           
+        </div>
+        <div style="margin:0 10px;border-top:1px solid #ddd;margin-top:10px;"></div> 
+        <div class="row box yyddbox" >
+            <em v-for='time in times' v-cloak>
+                <span :class="{active : time==active.times}" @click='select("times",time)'>{{ time }}</span>
+            </em>
+        </div>
+        <div class="line"></div>
+        <div class="row ydsj">
+            <div class="col-xs-4">预订人数:</div>
+            <div class="rightText" v-cloak>{{ active.number }}人</div>
+        </div>
+        <div class="row box yyddbox">
+            
+            <div class="col-xs-6">
+                <input class="form-control" v-model='active.number' number/>
+            </div>
+             <div class="col-xs-6">
+                <a class='yyPeople' @click='reduce'>-1</a>
+                <a class='yyPeople' @click='add'>+1</a>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="row ydsj">
+       
+            <div class="col-xs-4">营业点:</div>
+            <div class="rightText" v-cloak>{{active.yy.descript}}</div>
+        </div>
+        <div class="row box yyddbox yyddbox2">
+            <em v-for='yy in yingye.data' v-cloak>
+                <span :class="{active : yy.code==active.yy.code}" @click='select("yy",yy)'>{{yy.descript}}</span>
+            </em>
+        </div>
+         <div class="line"></div>
+        <div class="row ydsj">
+            <div class="col-xs-4">餐桌类型:</div>
+            <div class="rightText" v-cloak>{{active.hoteType.descript}}</div>
+        </div>
+        <div class="row box yyddbox yyddbox2">
+            <em v-for='hoteType in hoteTypes.data' v-cloak>
+                <span :class="{active : hoteType.code==active.hoteType.code}" @click='select("hoteType",hoteType)'>{{hoteType.descript}}</span>
+               
+            </em>
+        </div>
+        <div class="line"></div>
+        <div class="row ydsj">
+            <div class="col-xs-4">客户信息</div>   
+        </div>
+        <div class="row khxx">
+			<div class="col-xs-6">
+				<input class="form-control" placeholder='姓名' v-model='active.name'>
+			</div>
+			<div class="col-xs-6 box khxxbox">
+                <em v-for='sex in sexs' v-cloak>
+                    <span  :class="{active : sex==active.sex}" @click='select("sex",sex)'>{{sex}}</span>
+                    
+                </em>
+			</div>
+        </div>
+        <div class="row khxx">
+			<div class="col-xs-6">
+				<input class="form-control" placeholder='联系电话' v-model='active.mobile'>
+			</div>
+			<div class="col-xs-6 box khxxbox">
+				请填写真实信息
+			</div>
+        </div>
+        <div class="row khxx">
+        	<div class="col-xs-12">
+				<input class="form-control" placeholder='备注' v-model='active.remark'>
+			</div>
+        </div>
+        <div class="row zhifu">
+        	
+			<button class="btn btn-block btn-yellow" @click='postAll'>提交</button>
+			
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+	require('./js/yuding.js')({
+        el:'#app',
+        yingye:{
+            "data": [{
+                "code": "100",
+                "descript": "西餐厅"
+            },
+            {
+                "code": "110",
+                "descript": "中餐厅"
+            },
+            {
+                "code": "120",
+                "descript": "会议室"
+            }],
+            "stauts": "0"
+        },
+        canzuo:{
+            "data": [{
+                "code": "100",
+                "descript": "大厅"
+            },
+            {
+                "code": "110",
+                "descript": "中餐厅"
+            },
+            {
+                "code": "120",
+                "descript": "会议室"
+            }],
+            "stauts": "0"
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,7 @@
+{
+    "version": "2.10.6",
+    "repos": "https://github.com/moment/moment",
+    "description": "A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.",
+    "name": "moment",
+    "main": "moment.js"
+}

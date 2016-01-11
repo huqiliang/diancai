@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>点菜</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="components/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/diancai.css?__inline">
+    <script type="text/javascript" src="lib/mod.js"></script>
+</head>
+
+<body id="app">
+    <div class="DianCaiTab">
+
+        <!-- Nav tabs -->
+       <!--  <ul class="nav nav-tabs" >
+            <li class="active"><a>点菜</a></li>
+          
+            <li><a>商家详情</a></li>
+          
+        </ul> -->
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            <div class="tabpanel">
+				<div class="row">
+					<div class="col-xs-4">
+						<ul id="leftContent">
+							<li v-cloak  v-for='category in categorys' @click='getNew(category.sortCode)' :class="{active : current==category.sortCode}">{{category.sortDescript}}</li>
+						</ul>
+					</div>
+					
+					<div class="col-xs-8">
+						<h1 id="categoryName">销量排行</h1>
+						<div class="rightContent"  v-for="dishs in dishList" v-show='dishs.data[0].sortCode == current'>
+							<ul>
+								<li class="row cailie" v-for="dish in dishs.data" v-cloak>
+									<div class="col-xs-4"><img src="{{dish.pluPhotoUrl}}" alt="" class="img-responsive"></div>
+									<div class="col-xs-6" style="padding:0">
+										<h2>{{dish.pluDescript}}</h2>
+										<!-- <p class="shou">月售{{dish.solt}} &nbsp;&nbsp;<span class='glyphicon glyphicon-thumbs-up'></span>{{dish.ding}}</p> -->
+										<p class="price" style="margin-top:5px"><span>￥{{dish.pluPrice}}</span><em>/份</em></p>
+									</div>
+									
+									<div class="MinusAdd" v-if="dish.number>0">
+									 	<span class='glyphicon glyphicon-minus lbtn' @click='reduce(dish)'></span>{{ dish.number }}<span class="glyphicon glyphicon-plus lbtn add" @click='add(dish)'></span>
+									</div>
+									<div class="MinusAdd" v-else>
+									   <span class="glyphicon glyphicon-plus nbtn" @click='add(dish)'></span>
+									</div>
+									
+								</li>
+							</ul>
+						</div>
+						
+					</div>
+				
+				</div>
+            </div>
+            <div class="tabpanel" style="display: none;">
+            	333
+            </div>
+        </div>
+       
+    </div>
+
+    <div id="shopCar">
+		<div class="row">
+			<div class="col-xs-12">
+				<template  v-cloak v-if="sum>0">
+					<div class="car" @click='showToggle()'><span class="glyphicon glyphicon-shopping-cart"></span><i>{{sum}}</i></div>
+					
+					<div class='allPrice' ><span>共 ￥{{ priceSum }}</span></div>
+					<div class="choose"><a class="btn btn-yellow" @click='postAll'>选好了</a></div>
+					<div v-show="show" transition="expand" >
+						<table class="table showList">
+							
+							<tr v-for="dish in shopCar" v-if="dish.number>0">
+								<td>{{ dish.pluDescript }}</td>
+								<td>￥{{ dish.number*dish.pluPrice }}</td>
+								<td>
+									<div class="MinusAdd" >
+										<span class='glyphicon glyphicon-minus lbtn' @click='reduce(dish)'></span>{{ dish.number }}<span class="glyphicon glyphicon-plus lbtn add" @click='add(dish)'></span>
+									</div>
+								</td>
+							</tr>
+							
+						</table>
+					</div>
+				</template>
+				<template v-cloak v-else>
+					<div class="car disabled"><span class="glyphicon glyphicon-shopping-cart"></span></div>
+					
+					<div class='allPrice disabled'><span>购物车空空如也~</span></div>
+				</template>
+					
+			</div>
+		</div>
+    </div>
+    <div id="bodyBg" @click="bgHide"></div>
+</body>
+<script type="text/javascript">
+
+	require('./js/diancai')({
+		el : '#app',
+		hotelId : 9,
+		pcCode : 100
+	})
+</script>
+
+</html>

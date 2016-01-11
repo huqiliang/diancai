@@ -1,0 +1,25 @@
+{
+    "data": [{
+        "noteCode": "A1",
+        "noteDescript": "零点菜本",
+        "sortCode": "A142",
+        "sortDescript": "厨师长特选",
+        "pluCode": "A141054",
+        "pluDescript": "石锅海参删",
+        "pluUnit": "位",
+        "pluPrice": "128.00",
+        "pluPhotoUrl": "/images/1.jpg",
+        "pluFlag": "00000000001111110000"
+    }, {
+        "noteCode": "A1",
+        "noteDescript": "零点菜本",
+        "sortCode": "A142",
+        "sortDescript": "厨师长特选",
+        "pluCode": "A142001",
+        "pluDescript": "澳洲牛乳腿",
+        "pluUnit": "份",
+        "pluPrice": "248.00",
+        "pluFlag": "00000000001111110000"
+    }],
+    "stauts": "0"
+}

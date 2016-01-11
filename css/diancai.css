@@ -1,0 +1,266 @@
+ul,li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.DianCaiTab {
+    overflow: hidden;
+}
+
+.DianCaiTab .nav-tabs li {
+    width: 50%;
+    text-align: center;
+}
+
+.nav-tabs>li>a {
+    border: none;
+    color: #666;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:hover,
+.nav-tabs>li.active>a:focus {
+    border: none;
+    border-bottom: 2px solid #FC4D3F;
+    color: #FC4D3F;
+}
+
+#leftContent {
+    background: #F8F8F8;
+}
+
+#leftContent {
+    padding-top: 10px;
+}
+
+#leftContent li {
+    height: 50px;
+    line-height: 50px;
+    text-indent: 1em;
+}
+
+#leftContent li.active {
+    background: #fff;
+    color: #FC4D3F;
+}
+
+.rightContent {
+    padding-left: 0;
+}
+
+#categoryName {
+    font-size: 1em;
+    margin-top: 10px;
+    padding-left: 10px;
+    background: #F8F8F8;
+    color: #666
+}
+
+.cailie {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.cailie h2 {
+    margin: 0;
+    font-size: 1em;
+    margin-top: 2px;
+    font-weight: bold;
+}
+
+.cailie p {
+    padding: 0;
+    margin: 0;
+    padding-top: 2px;
+}
+
+.cailie .shou {
+    font-size: 0.6em;
+    padding-top: 5px;
+    color: #666
+}
+
+.cailie .shou span {
+    margin-right: 4px;
+}
+
+.cailie .price span {
+    font-size: 1.2em;
+    color: #F53D2C;
+}
+
+.cailie .price em {
+    font-size: 0.6em;
+    color: #666;
+    font-style: normal;
+    margin-left: 2px;
+}
+
+.lbtn {
+    background: #FC4D3F;
+    display: inline-block;
+    width: 20px;
+    border-radius: 10px;
+    color: #fff;
+    height: 20px;
+    line-height: 18px;
+    padding-left: 2px;
+    font-size: 1em;
+    margin: 0 10px;
+}
+
+.nbtn {
+    background: #fff;
+    border: 1px solid #FFC300;
+    color: #FFC300;
+    display: inline-block;
+    width: 20px;
+    border-radius: 10px;
+    height: 20px;
+    line-height: 18px;
+    padding-left: 3px;
+    font-size: 1em;
+    margin: 0 10px;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+    border-top: none;
+    border-bottom: 1px solid #ddd
+}
+.add {
+    padding-left: 4px;
+}
+
+.MinusAdd {
+    position: absolute;
+    right: 5%;
+    bottom: 15%
+}
+
+#shopCar {
+    height: 55px;
+    background: #FFF;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: #fff;
+    border-top: 1px solid #ccc;
+    z-index: 99999999
+}
+
+.car {
+    background: #FFC300;
+    width: 48px;
+    border-radius: 24px;
+    height: 48px;
+    position: relative;
+    top: -10px;
+    left: 10px;
+    text-align: center;
+    line-height: 52px;
+    font-size: 1.5em;
+    float: left;
+    z-index: 99999999;
+}
+
+.car.disabled {
+    background: #666;
+}
+
+.car i {
+    background: #FA3E0B;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    font-style: normal;
+    font-size: 12px;
+    display: block;
+    position: absolute;
+    color: #fff;
+    top: 0;
+    right: 0;
+    text-align: center;
+    line-height: 16px;
+}
+
+.allPrice {
+    float: left;
+    margin-left: 20px;
+    font-size: 1.3em;
+    margin-top: 8px;
+    color: #E24C4A;
+    font-weight: 600;
+    font-family: "microsoft yahei";
+}
+
+.allPrice.disabled {
+    color: #666;
+}
+
+.choose {
+    float: right;
+    margin: 10px 10px 0 0;
+}
+
+.btn-yellow {
+    background: #FD4E3D;
+    color: #fff;
+}
+
+.btn-yellow:hover {
+    background: #FD4E3D;
+    color: #fff;
+}
+/* 必需 */
+
+.expand-transition {
+    transition: all .3s ease;
+    z-index: 999999;
+    background: #fff;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    bottom: 48px;
+    
+    color: #666;
+    padding-top: 15px;
+    padding-bottom: 5px;
+
+}
+/* .expand-enter 定义进入的开始状态 */
+/* .expand-leave 定义离开的结束状态 */
+
+.expand-enter,
+.expand-leave {
+    height: 0;
+    padding: 0 10px;
+    opacity: 0;
+}
+
+.showList {
+    margin: 0;
+    width: 95%;
+}
+
+.showList tr {
+    height: 30px;
+}
+
+.showList td {
+    width: 33.33%;position: relative;
+}
+
+#bodyBg {
+    background: #000;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: none;
+}
+.tab-content{padding-bottom: 50px;}
+[v-cloak] {
+    display: none
+}
